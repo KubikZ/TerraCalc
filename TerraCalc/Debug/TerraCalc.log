@@ -1,4 +1,0 @@
-﻿  TerraCalc.cpp
-C:\Users\jakub\source\repos\TerraCalc\aritmetic.h(12,20): warning C4101: 'bIndex': unreferenced local variable
-C:\Users\jakub\source\repos\TerraCalc\aritmetic.h(23,15): warning C4101: 'reminder': unreferenced local variable
-  TerraCalc.vcxproj -> C:\Users\jakub\source\repos\TerraCalc\Debug\TerraCalc.exe
