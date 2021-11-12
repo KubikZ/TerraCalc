@@ -1,15 +1,24 @@
 #include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
 #include "aritmetic.h"
+bool AddTest();
 
 int main()
 {
+	AddTest();
 	
-	std::string result = "3628800";
-
-	for (size_t i = 3628800; i > 0; i--)
-	{
-		result = Aritmetic::Add(result, "3628800");
-	}
-
 	return 0;
+}
+
+bool AddTest()
+{
+	for(int i = 120; i < 130; i++)
+		for(int j = 120; j < 130; j++)
+		{
+			//if (atoi(Aritmetic::Add(std::to_string(i), std::to_string(j)).c_str()) != i+j)
+			std::cout<< i << "+" << j << "= " << Aritmetic::Add(std::to_string(i), std::to_string(j)) << " [" << i + j << ']'<< std::endl;
+			//std::cout << Aritmetic::Add("123", "78");
+		}
+	return true;
 }

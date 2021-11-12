@@ -3,43 +3,43 @@
 
 namespace Aritmetic
 {
-    namespace
-    {
-        std::string add(std::string a, std::string b)
-        { 
-            std::string result = "";
-            size_t aDigits = a.size();
-            size_t bDigits = b.size();
-            size_t backAIndex = aDigits - 1;
-            size_t backBIndex = b.size() - 1;
-            short carry = 0;
-            
-            for (backBIndex; backBIndex > 0; backBIndex--)
-            {
-                short value = carry + ((short)a[backAIndex--] - (short)'0') + ((short)b[backBIndex] - (short)'0');
-                result.insert(result.begin(), value%10 + (short)'0');
-                carry = (short)(value / 10);
-            }
-            short value = carry + ((short)a[backAIndex--] - (short)'0') + ((short)b[backBIndex] - (short)'0');
-            result.insert(result.begin(), value%10 + '0');
-            carry = (short)(value / 10);
-
-            if (carry != 0)
-                result.insert(result.begin(), carry+'0');
-            std::string rest = a.substr(0, a.size() - b.size());
-            result.insert(result.begin(), rest.begin(), rest.end());
-
-            return result;
-        }
-    }
-    std::string Add(std::string a1, std::string a2)
+    // 123, 78
+    std::string add(std::string a, std::string b)
     {
         std::string result = "";
-        short reminder;
-        size_t aDigits = a1.size();
-        size_t bDigits = a2.size();
-
-        if (aDigits >= bDigits)
+        
+        size_t aDigits = a.size();
+        size_t bDigits = b.size();
+        short carry = 0; 
+        size_t index = 0;
+        while(index < bDigits)
+        {
+          size_t backIndex = bDigits - index - 1;
+          short sum = (short)(a[backIndex + 1] - '0') + (short)(b[backIndex] - '0');
+          
+          sum += carry;
+          carry = sum/10;
+          char digit;
+          if(sum > 9)
+            digit = sum - 10;
+          else
+            digit = sum;
+            
+          result.insert(result.begin(), '0' + digit);
+          index++;
+        }
+        if(aDigits > bDigits)
+        {
+          std::string rest = a.substr(0, a.size() - b.size());
+          rest[rest.size()-1] += carry; 
+          result.insert(result.begin(), rest.begin(), rest.end());
+        }
+        return result;
+    }
+  
+    std::string Add(std::string a1, std::string a2)
+    {
+        if (a1.size() >= a2.size())
             return add(a1, a2);
         else
             return add(a2, a1);
